@@ -2,26 +2,27 @@
  *  The library also features a string comparison method. */
 public class ArrCharOps {
     public static void main(String[] args) {
-        String str = "clearly";
-        char[] arr1 = {'c','l','e','a','r','l','y'};
-        char[] arr2 = {'U','n','d','e','r','s','t', 'o', 'o', 'd'};
-        System.out.println(str);  // Prints the string
-        println(arr1);            // Prints an array of characters
-        System.out.println(charAt(arr1,2));      
-        System.out.println(indexOf(arr1,'l'));  
-        System.out.println(indexOf(arr1,'l',3)); 
-        System.out.println(lastIndexOf(arr1, 'l'));
-        System.out.println(concat(arr1, arr2));
-        System.out.println(subArray(arr2, 2, 9));
-        System.out.println(compareTo("abcd", "abcd"));
-        System.out.println(compareTo("abc", "abcd"));
-        System.out.println(compareTo("abw", "abcd"));
-        System.out.println(compareTo("Abcd", "a"));
-        System.out.println(compareTo("apple", "banana"));
-        System.out.println(compareTo("apple", "applepie"));
-        System.out.println(compareTo("Zoo", "zoo"));
-        System.out.println(hashCode(arr1));
-        System.out.println(hashCode(arr2));
+        // String str = "clearly";
+        // char[] arr1 = {'c','l','e','a','r','l','y'};
+        // char[] arr2 = {'U','n','d','e','r','s','t', 'o', 'o', 'd'};
+        // System.out.println(str);  // Prints the string
+        // println(arr1);            // Prints an array of characters
+        // System.out.println(charAt(arr1,2));      
+        // System.out.println(indexOf(arr1,'l'));  
+        // System.out.println(indexOf(arr1,'l',3)); 
+        // System.out.println(lastIndexOf(arr1, 'l'));
+        // System.out.println(concat(arr1, arr2));
+        // System.out.println(subArray(arr2, 2, 9));
+        // System.out.println(compareTo("abcd", "abcd"));
+        // System.out.println(compareTo("abc", "abcd"));
+        // System.out.println(compareTo("abw", "abcd"));
+        // System.out.println(compareTo("Abcd", "a"));
+        // System.out.println(compareTo("apple", "banana"));
+        // System.out.println(compareTo("apple", "applepie"));
+        // System.out.println(compareTo("Zoo", "zoo"));
+        // System.out.println(hashCode(arr1));
+        // System.out.println(hashCode(arr2));
+
     }
 
     /** Prints the given array of characters, and moves the cursor to the next line.
@@ -36,30 +37,50 @@ public class ArrCharOps {
     /** Returns the char value at the specified index. Assume that the array is non-empty.
      */
     public static char charAt(char[] arr, int index) {
-        // Replace the following statement with your code
-        return 0;
+        return arr[index];
     }
 
     /** If the two arrays have the same value in every index, 
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
-        return false;
+        // if both arrays arer empty.
+        if (arr1.length == 0 && arr2.length == 0){
+            return true;
+        }
+
+        // go over the arrays and check if the values at index i are the same.
+        for (int i = 0; i < arr1.length; i++){
+            if (arr1[i] != arr2[i]){
+                return false;
+            }
+        }
+        return true;
     }
 
     /** Returns the index within the given array of the first occurrence of the given character.
      *  If no such character is found, returns -1.
      */
     public static int indexOf(char[] arr, char ch) {
-        // Replace the following statement with your code
+        // goes over the values of the array and checks if char is in array.
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] == ch){
+                return i;
+            }
+        }
+        // else return -1.
         return -1;
     }
 
     /** Same as indexOf(char[], char), but starts the search in the given index.
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
-        // Replace the following statement with your code
+        // goes over the values of the array from the given index and checks if char is in array.
+        for (int i = fromIndex; i < arr.length; i++){
+            if (arr[i] == ch){
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -67,15 +88,34 @@ public class ArrCharOps {
      *  If no such character is found, returns -1.
      */
     public static int lastIndexOf(char[] arr, char ch) {
-        // Replace the following statement with your code
-        return -1;
+        // temp index for when there is an occurrence of the char but may not be the last. 
+        // starts as -1 for cases when char isnt in array.
+        int temp_index = -1; 
+
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] == ch){
+                temp_index = i;
+            }
+        }
+        return temp_index;
     }
 
     /* Returns an array which is the concatanation of the two given arrays.
     */
     public static char[] concat(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
-        return null;
+        // create new array with the combined length of both arrays.
+        char[] arr = new char[arr1.length + arr2.length];
+
+        // add arr1 to the new array.
+        for (int i = 0; i < arr1.length; i++){
+            arr[i] = arr1[i];
+        }
+
+        // add arr2 to the new array.
+        for (int i = 0; i < arr2.length; i++){
+            arr[arr1.length + i] = arr2[i]; 
+        }
+        return arr;
     }
 
     /** Returns a new array that can be described as a sub-array of this array.
@@ -84,8 +124,17 @@ public class ArrCharOps {
      *  characters containing the characters "urge".
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
-        // Replace the following statement with your code
-        return null;
+        // create aa new array with the length of given index.
+        char[] NewArry = new char[endIndex - beginIndex];
+        int NewIndex = 0;
+
+        // go over the values starting and ending with the given index.
+        for (int i = beginIndex; i < endIndex; i++){
+            NewArry[NewIndex] = arr[i];
+            NewIndex++;
+        }
+
+        return NewArry;
     }
 
      /** Returns a single integer that represents the given array. This integer is sometimes 
@@ -96,8 +145,15 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
-        // Replace the following statement with your code
-        return 0;
+        // the length of the given array.
+        int n = arr.length;
+        int HashArr = 0;
+
+        // calculation the hash code.
+        for (int i = 0; i < n; i++){
+            HashArr = HashArr + arr[i] * (int) (Math.pow(7, (n-i-1)));
+        }
+        return HashArr;
     }
 
     /**
@@ -126,7 +182,41 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        // Replace the following statement with your code
-        return 0;
+    // error check.
+    if (str1 == null || str2 == null || str1.length() == 0 || str2.length() == 0) {
+        return -2;
+    }
+
+    int n1 = str1.length();
+    int n2 = str2.length();
+    int minLength = Math.min(n1, n2);
+
+    // compare characters one by one.
+    for (int i = 0; i < minLength; i++) {
+        char c1 = str1.charAt(i);
+        char c2 = str2.charAt(i);
+
+        if (c1 < c2) {
+            return -1;
+        }
+        if (c1 > c2) {
+            return 1;
+        }
+        // if equal, continue.
+    }
+
+    // all compared characters were equal. then compare lengths of strings.
+    
+    // shorter string is lexicographically smaller.
+    if (n1 < n2) {
+        return -1;  
+    }
+    // longer string is lexicographically greater.
+    if (n1 > n2) {
+        return 1;    
+    }
+
+    // same length and characters.
+    return 0;
     }
 }
